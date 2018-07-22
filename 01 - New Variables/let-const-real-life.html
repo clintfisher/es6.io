@@ -6,15 +6,63 @@
 </head>
 <body>
 <script>
+  // IIFE executes a function
+  // immediately after declearing]
+  // useful mechanism for scoping
+  // var variables to simulate
+  // block scope like let
+  // (function () {
+  //   var name = 'clint';
+  //   console.log(name);
+  // })();
+  
   {
     const name = 'wes';
     console.log(name);
   }
 
+  /* 
+    another thing that let and const fix is for loops,
+    this will log i from 0 to 9, if you type i into the
+    console you will see its 10, this i variable has leaked
+    into the global scope. which is not necessarily what
+    we need, its just a placeholder value we need to work
+    inside of this loop. 
+  */
+
+  // for(var i = 0; i < 10; i++) {
+  //   console.log({i});
+  // }
+
+  /* 
+    the next thing to notice about var in our for loops
+    is this:
+  */
+
+  // for(var i = 0; i < 10; i++) {
+  //   console.log({i});
+  //   setTimeout(function () {
+  //     console.log(`The number is ${i}`);
+  //   }, 1000);
+  // }
+
+  /* 
+    if you notice the log, ater a second all the numbers are 10. the
+    reason why is this: if you look at the first console log that runs
+    immediately it console logs itself. however, after 1 second, this
+    entire loop has already gone thru its iteration and done its work,
+    and the variable i in our conditional is being overwritten every time,
+    so by the time the first setTimeout runs i is already at 10.
+
+    one way to fix this is to simply change from var to let because let
+    is block scoped and we have a block here (you cant use const
+    because i needs to update itself)
+  */
+
   for(let i = 0; i < 10; i++) {
     console.log(i);
     setTimeout(function() {
-      console.log('The number is ' + i);
+      console.log(`The number is ${i}`);
     },1000);
   }
 

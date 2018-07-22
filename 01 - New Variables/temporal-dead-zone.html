@@ -6,8 +6,27 @@
 </head>
 <body>
 <script>
+  // console.log(pizza);
+  // var pizza = 'Deep Dish 🍕🍕🍕';
+  
+  // this logs undefined
+  // with var variables you can actually access them
+  // as they are defined, before they are defined,
+  // you can't access the value of them, but you can
+  // access the fact that the variable has been created
+
+  // console.log(pizza);
+  // let pizza = 'Deep Dish 🍕🍕🍕';
+  /* 
+    when you use let or const you get ReferenceError: can't access lexical declaration `pizza' before initialization
+  */
+
   console.log(pizza);
   const pizza = 'Deep Dish 🍕🍕🍕';
+
+  // the temporal dead zone is the fact that you
+  // cant access the let or const variable before
+  // its been defined (anywhere above it)
 
 </script>
 </body>
