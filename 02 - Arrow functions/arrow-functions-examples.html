@@ -10,12 +10,67 @@
 const race = '100m Dash';
 const winners = ['Hunter Gath', 'Singa Song', 'Imda Bos'];
 
-const win = winners.map((winner, i) => ({name: winner, race, place: i + 1}));
+// sometimes when building an application we don't have
+// the data in the format we want, ideally we would want
+// `winners` to be an object rather than an array
+// like this:
+// {
+//   name: 'clint fisher',
+//   place: 1,
+//   race: race
+// }
 
+// here you'll notice we get a syntax error,
+// the curly braces we have after the fat arrow
+// written like this are interpreted as a function
+// block rather than an object literal like we want
+// const win = winners.map((winner, i) => {
+//   name: winner, 
+//   race: race,
+//   place: i
+//   });
+// so we need to wrap those curly braces in parens:
+// also note since `i` index is 0 based we will need to
+// add 1 so our place positions are correct
+// const win = winners.map((winner, i) => ({
+//   name: winner, 
+//   race: race,
+//   place: i + 1,
+//   })
+// );
+// also in es6, when a property name matches a property value
+// you dont have to repeat it, so we can shorten race:
+
+// this is officially an implicit return with an object literal:
+const win = winners.map((winner, i) => ({
+  name: winner, 
+  race,
+  place: i + 1,
+  })
+);
+
+console.table(win);
+
+// const win = winners.map((winner, i) => ({name: winner, race, place: i + 1}));
+
+// we want to filter this list for people who are older
+// than 60 years old
 const ages = [23,62,45,234,2,62,234,62,34];
 
+// rather than using a conditional if statement
+// for our age check we can use it in the implicit
+// return, any that are over 60 will be returned true
+// and added to a new array in `old`
 const old = ages.filter(age => age >= 60);
 console.log(old);
+
+
+
+
+// const ages = [23,62,45,234,2,62,234,62,34];
+
+// const old = ages.filter(age => age >= 60);
+// console.log(old);
 
 </script>
 </body>

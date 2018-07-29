@@ -55,27 +55,92 @@
 
   <div class="wrap">
     <div class="box">
-      <h2>Wes Bos</h2>
-      <p class="social">@wesbos</p>
+      <h2>Clint Fisher</h2>
+      <p class="social">@clintfisher</p>
     </div>
   </div>
 
   <script>
-    const box = document.querySelector('.box');
-    box.addEventListener('click', function() {
-      let first = 'opening';
-      let second = 'open';
 
-      if(this.classList.contains(first)) {
-        [first, second] = [second, first];
-      }
+    // arrow functions do not rebind the value of `this`
+    // lets use a regular function first:
+    // when someone clicks it lets log `this`
+  const box = document.querySelector('.box');
+  
+  // box.addEventListener('click', function() {
+  //   console.log('this: ', this);
+  // });
 
-      this.classList.toggle(first);
-      setTimeout(() => {
-        console.log(this);
-        this.classList.toggle(second);
-      }, 500);
-    });
+  /* this is `box` or, "the thing that got clicked on"
+    now if you swap the standard function out with an arrow function:
+  */ 
+
+  // box.addEventListener('click', () => {
+  //   console.log('this: ', this);
+  // });
+
+  
+  /*
+    we get the `Window` because with the arrow function the value of this is not rebound inside of that function, it is inherited from whatever the parent scope is. our parent to box is the Window, if you type
+    `this` into the console you'll get `Window`. so sometimes, you dont want to use an arrow function 
+    lets go back to our standard function call
+    you generally want the outside function to be standard
+    but inside you can use arrow functions:
+*/
+
+  // box.addEventListener('click', function() {
+  //   this.classList.toggle('opening');
+  //   // we are entering a new function and this function
+  //   // hasnt been bound to anything which equals `Window`
+  //   // this is where self = this comes from traditionally:
+  //   var self = this;
+  //   setTimeout(function() {
+  //     console.log('this: ', this);
+  //     console.log('this.classList: ', this.classList);
+  //     // this.classList.toggle('open');
+  //     self.classList.toggle('open');
+  //   }, 500);
+  // });
+
+  /* 
+    fortunately we dont need to do that anymore we can
+    use an arrow function which inherits the value of this
+    from its parent   
+  */
+
+  box.addEventListener('click', function() {
+    let first = 'opening';
+    let second = 'open';
+
+    if (this.classList.contains(first)) {
+      // we want to swap two variables so our animation
+      // works properly, with es6 we can destructure:
+      [first, second] = [second, first];
+    }
+
+    this.classList.toggle(first);
+    setTimeout(() => {
+      console.log('this: ', this);
+      console.log('this.classList: ', this.classList);
+      this.classList.toggle(second);
+    }, 500);
+  });
+
+    // const box = document.querySelector('.box');
+    // box.addEventListener('click', function() {
+    //   let first = 'opening';
+    //   let second = 'open';
+
+    //   if(this.classList.contains(first)) {
+    //     [first, second] = [second, first];
+    //   }
+
+    //   this.classList.toggle(first);
+    //   setTimeout(() => {
+    //     console.log(this);
+    //     this.classList.toggle(second);
+    //   }, 500);
+    // });
   </script>
 
 </body>
