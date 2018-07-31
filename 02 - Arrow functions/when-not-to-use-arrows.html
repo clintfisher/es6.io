@@ -37,13 +37,18 @@
   }
 
   const beemer = new Car('bmw', 'blue');
-  const subie = new Car('Subaru', 'white');
+  const subie = new Car('subaru', 'white');
 
+  // we explicitly need the keyword this here
+  // in order for this prototype method to work
+  // so no fat arrow joints here
   Car.prototype.summarize = function() {
      return `This car is a ${this.make} in the colour ${this.colour}`;
   };
 
   // When you need arguments object
+  // we dont have access to arguments keyword when
+  // we are inside an arrow function
   const orderChildren = function() {
     const children = Array.from(arguments);
     return children.map((child, i) => {
