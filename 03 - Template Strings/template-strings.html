@@ -8,7 +8,16 @@
 <script>
   const name = 'Snickers';
   const age = 2;
+  // var sentence = 'My dog ' + name + ' is ' + age * 7 + ' years old.';
+  // with template strings!
+  /* interesting note wes mentions is that once you are 
+  in the template literals and within the variable
+  interpolation curly braces string = `${ any js here }`
+  you can run any kind of js, run a function, 
+  interpret a variable, do math calculations like we
+  are */
   const sentence = `My dog ${name} is ${age * 7} years old.`;
+  // const sentence = `My dog ${name} is ${age * 7} years old.`;
   console.log(sentence);
 
 </script>
