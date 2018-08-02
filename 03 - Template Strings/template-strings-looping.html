@@ -12,16 +12,29 @@
     { name: 'Sunny', age: 1 }
   ];
 
+// BOMB we can nest template literals
+// here we output our list item by looping
+// over our dogs array and returning a template
+// literal!
   const markup = `
     <ul class="dogs">
       ${dogs.map(dog => `
-        <li>
-          ${dog.name}
-          is
-          ${dog.age * 7}
-        </li>`).join('')}
+        <li>${dog.name} is ${dog.age * 7}</li>
+      `).join('')}
     </ul>
   `;
+
+
+  // const markup = `
+  //   <ul class="dogs">
+  //     ${dogs.map(dog => `
+  //       <li>
+  //         ${dog.name}
+  //         is
+  //         ${dog.age * 7}
+  //       </li>`).join('')}
+  //   </ul>
+  // `;
   document.body.innerHTML = markup;
 
 </script>

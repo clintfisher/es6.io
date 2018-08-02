@@ -12,16 +12,28 @@
     featuring: 'Biggie Smalls'
   };
 
+  // if statements using the ternary operator
   const markup = `
     <div class="song">
       <p>
-        ${song.name} — ${song.artist}
+        ${song.name} - ${song.artist}
         ${song.featuring ? `(Featuring ${song.featuring})` : ''}
       </p>
     </div>
   `;
-
+  console.log('markup: ', markup);
   document.body.innerHTML = markup;
+
+  // const markup = `
+  //   <div class="song">
+  //     <p>
+  //       ${song.name} — ${song.artist}
+  //       ${song.featuring ? `(Featuring ${song.featuring})` : ''}
+  //     </p>
+  //   </div>
+  // `;
+
+  // document.body.innerHTML = markup;
 
 </script>
 </body>
