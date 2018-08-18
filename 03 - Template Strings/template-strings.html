@@ -15,11 +15,15 @@
 </head>
 <body>
 <script>
+  const name = 'Snickers';
+  const age = 2;
+  
   function highlight (strings, ...values) {
     let str = '';
     strings.forEach((string, i) => {
       console.log('string: ', string);
       console.log('i: ', i);
+      console.log('values[i]:  ', values[i]);
       // lets concatenate on to str
       // remember the strings array is always going to be one
       // larger than the values array, so if you do nothing
@@ -30,15 +34,13 @@
       str +=  
       `${string} 
         ${ values[i] ? 
-        `<span class="highlight">` + (values[i] || '') + `</span>` : ''
+        `<span class="highlight">${(values[i] || '')}</span>` : ''
         }
       `;
     });
     return str;
   }
 
-  const name = 'Snickers';
-  const age = 2;
   // var sentence = 'My dog ' + name + ' is ' + age * 7 + ' years old.';
   // with template strings!
   /* interesting note wes mentions is that once you are 
