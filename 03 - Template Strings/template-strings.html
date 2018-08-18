@@ -38,9 +38,8 @@
       str +=  
       `${string} 
         ${ values[value] ? 
-        `<span class="highlight">${(values[value] || '')}</span>` : ''
-        }
-      `;
+        `<span class="highlight">${values[value] || ''}</span>` : ''}`;
+      console.log('str: ', str);
     });
     return str;
   }
