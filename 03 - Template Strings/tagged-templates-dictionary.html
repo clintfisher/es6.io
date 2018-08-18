@@ -21,9 +21,50 @@
     CSS: 'Cascading Style Sheets',
     JS: 'JavaScript'
   };
+  function addAbbreviations (strings, ...values) {
+    // we want to create a new array of all the values
+    // if theres an abbreviation, we want to wrap it
+    // in an abbr element
+    // take the regular values and map over them
+    // and return a new array of values
+    const abbreviated = values.map(value => {
+      // check if theres a value in dict
+      if (dict[value]) {
+        console.log('dict[value]: ', dict[value]);
+        return `<abbr title="${dict[value]}">${value}</abbr>`;
+      }
+      console.log('value: ', value);
+      return value;
+    });
+    console.log('abbreviated: ', abbreviated);
+    // now you can either create an empty string var
+    // and concat to it like the last example or you can
+    // use reduce which will loop over the strings
+    // reduce takes two arguments, the first is a function
+    // the second is what you start with. we will start with
+    // an empty string. our function will be an anonymous function
+    // that will return
 
-  const first = 'Wes';
-  const last = 'Bos';
+    return strings.reduce((sentence, string, i) => {
+      console.log('sentence: ', sentence);
+      console.log('string: ', string);
+      console.log('i: ', i);
+      return `${sentence}${string}${abbreviated[i] || ''}`;
+    }, '');
+  };
+
+  const first = 'Clint';
+  const last = 'Fisher';
+
+  const sentence = addAbbreviations`Hello my name is ${first} ${last} and I love to code
+    ${'HTML'}, ${'CSS'}, ${'JS'}.
+  `;
+
+  const bio = document.querySelector('.bio');
+  const p = document.createElement('p');
+
+  p.innerHTML = sentence;
+  bio.appendChild(p);
 
 </script>
 </body>
