@@ -11,9 +11,7 @@
 </head>
 <body>
 
-  <div class="bio">
-
-  </div>
+  <div class="bio"></div>
 
 <script>
   const dict = {
@@ -21,6 +19,17 @@
     CSS: 'Cascading Style Sheets',
     JS: 'JavaScript'
   };
+  
+  const first = 'Clint';
+  const last = 'Fisher';
+
+  const sentence = addAbbreviations`Hello my name is ${first} ${last} and I love to code
+    ${'HTML'}, ${'CSS'}, ${'JS'}.
+  `;
+
+  const bio = document.querySelector('.bio');
+  const p = document.createElement('p');
+  
   function addAbbreviations (strings, ...values) {
     // we want to create a new array of all the values
     // if theres an abbreviation, we want to wrap it
@@ -52,16 +61,6 @@
       return `${sentence}${string}${abbreviated[i] || ''}`;
     }, '');
   };
-
-  const first = 'Clint';
-  const last = 'Fisher';
-
-  const sentence = addAbbreviations`Hello my name is ${first} ${last} and I love to code
-    ${'HTML'}, ${'CSS'}, ${'JS'}.
-  `;
-
-  const bio = document.querySelector('.bio');
-  const p = document.createElement('p');
 
   p.innerHTML = sentence;
   bio.appendChild(p);
