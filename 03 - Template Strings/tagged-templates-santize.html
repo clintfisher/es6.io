@@ -18,15 +18,32 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/0.8.2/purify.min.js"></script>
 <script>
+  // function sanitize(strings, ...values) {
+  //   const dirty = strings.reduce((prev, next, i) => `${prev}${next}${values[i] || ''}`, '');
+  //   return DOMPurify.sanitize(dirty);
+  // }
+
+/* 
+  when getting data from a user, you must sanitize it to
+  make sure the user isnt hacking you by inserting an i-frame,
+  an image, or xss etc.
+*/
+
+// lets say first and aboutMe is user data we got from a database
+// or an api, that the user had saved.
+// aboutMe inserts an image which is ok, but it has a sneaky pete
+// onload alert hack that will run once the image loads
+// thats the big no-no, you can't allow users to run javascript
+// on your page, this is an example of a xss (cross site scripting hack) where we let someone else on the site run javascript on the page. the solution to this is to sanitize your html
   function sanitize(strings, ...values) {
-    const dirty = strings.reduce((prev, next, i) => `${prev}${next}${values[i] || ''}`, '');
+    const dirty = strings.reduce((prev, next, i) => `
+    ${prev}${next}${values[i] || ''}`, '');
     return DOMPurify.sanitize(dirty);
   }
-
   const first = 'Wes';
-  const aboutMe = `I love to do evil <img src="http://unsplash.it/100/100?random" onload="alert('you got hacked');" />`;
+  const aboutMe = sanitize`I love to do evil <img src="http://unsplash.it/100/100?random" onload="alert('you got hacked');" />`;
 
-  const html = sanitize`
+  const html = `
     <h3>${first}</h3>
     <p>${aboutMe}</p>
   `;
