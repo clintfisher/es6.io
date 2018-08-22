@@ -15,21 +15,45 @@ const make = 'BMW';
 const model = 'x5';
 const colour = 'Royal Blue';
 
+// these are cool string methods that help
+// us to rely less on regex
+
 // .startsWith()
+console.log(course.startsWith('RFB'));
+console.log(flightNumber.startsWith('AC', 3));
 
 // .endsWith()
-
+console.log(flightNumber.endsWith('jz'));
+console.log(accountNumber.endsWith('RT', 11));
 // .includes()
-
+console.log(flightNumber.includes('C2'));
 // .repeat()
+console.log('(*)(*)'.repeat(10));
+
+// we can use repeat to write a nice left pad
+// function which allows us to add space to the
+// left of our text to pad it so it aligns
+// in a column
 
 function leftPad(str, length = 20) {
+  // so if the string length is 3, that will
+  // give us 17 spaces of padding
   return `→ ${' '.repeat(length - str.length)}${str}`;
 }
 
 console.log(leftPad(make));
 console.log(leftPad(model));
 console.log(leftPad(colour));
+
+console.log(`${'💃' * 5}`.repeat(10) + ' Batman!');
+
+// function leftPad(str, length = 20) {
+//   return `→ ${' '.repeat(length - str.length)}${str}`;
+// }
+
+// console.log(leftPad(make));
+// console.log(leftPad(model));
+// console.log(leftPad(colour));
 
 
 </script>
