@@ -7,33 +7,122 @@
 <body>
 <script>
   const person = {
-    first: 'Wes',
-    last: 'Bos',
-    country: 'Canada',
-    city: 'Hamilton',
-    twitter: '@wesbos'
+    first: 'Clint',
+    last: 'Fisher',
+    country: 'USA',
+    city: 'Venice',
+    twitter: '@clintfisher'
   };
 
-  const { first, last, twitter } = person;
+/* 
+  destructuring is a javascript expression that allows us to
+  extract data from arrays, objects, maps and sets into their
+  own variable. it allows us to extract properties from an object
+  or items from an array, a multiple at a time
+*/  
 
-  const wes = {
-    first: 'Wes',
-    last: 'Bos',
-    links: {
-      social: {
-        twitter: 'https://twitter.com/wesbos',
-        facebook: 'https://facebook.com/wesbos.developer',
-      },
-      web: {
-        blog: 'https://wesbos.com'
-      }
+// so instead of doing it the old way:
+// const first = person.first;
+// const last = person.last;
+
+// we can do it the new way with destructuring
+// the curly braces are the destructuring syntax
+// it states: give me a variable called first, 
+// a variable called last, and take it from person
+// 
+// const { first, last, twitter } = person;
+
+// console.log('first: ', first);
+// console.log('last: ', last);
+// console.log('twitter: ', twitter);
+
+// console.log('person: ', person);
+
+/* 
+  this is also useful when you have nested data and are using
+  react - 
+*/
+
+const clint = {
+  first : 'clint',
+  last: 'fisher',
+  links: {
+    social: {
+      twitter: 'https://twitter.com/clintfisher',
+      instagram: 'https://instagram.com/clintfisher'
+    },
+    web: {
+      tumblr: 'https://tumblr.com/clintfisher'
     }
-  };
+  }
+};
 
-  const { twitter: tweet, facebook: fb } = wes.links.social;
+// we could do:
+// const twitter = clint.links.social.twitter;
+// const instagram = clint.links.social.instagram;
 
-  const settings = { width: 300, color: 'black' }  // height, fontSize
-  const { width = 100, height = 100, color = 'blue', fontSize = 25} = settings;
+// or we could use destructuring:
+// const { twitter, instagram } = clint.links.social;
+// const { tumblr } = clint.links.web;
+
+// console.log(twitter, instagram, tumblr);
+
+/* 
+we had to comment out the earlier twitter (L33) because we cant 
+declare a const twice, but destructuring allows us to rename
+a key if its inconvienent like say from a 3rd party or whatever
+the reason may be, these variables tweet and insta are being destructured AS clint.links.social.twitter and 
+clint.links.social.instagram then stored in a variable called
+tweet and a variable named insta 
+*/
+
+const { twitter:tweet, instagram:insta } = clint.links.social;
+const { tumblr:t } = clint.links.web;
+
+console.log(tweet, insta, t);
+
+/* 
+  also with destructuring we have the ability to set DEFAULTS.
+*/
+
+const settings = {width: 300, color: 'black'};
+/* 
+  how this works is: 
+  width - is it being destructured from the settings object? yes.
+  then it will be 300.
+  height - is it being destructured from the settings object? no.
+  then it will be the default of 100
+  color - is it being destructured from the settings object? yes.
+  then it will be black
+  fontSize - is it being destructured from the settings object? no.
+  then it will be the default of 25
+*/
+const { width = 100, height = 100, color = 'blue', fontSize = 25 } = settings;
+
+console.log('width: ', width);
+console.log('height: ', height);
+console.log('color: ', color);
+console.log('fontSize: ', fontSize);
+  // const { first, last, twitter } = person;
+
+  // const wes = {
+  //   first: 'Wes',
+  //   last: 'Bos',
+  //   links: {
+  //     social: {
+  //       twitter: 'https://twitter.com/wesbos',
+  //       facebook: 'https://facebook.com/wesbos.developer',
+  //     },
+  //     web: {
+  //       blog: 'https://wesbos.com'
+  //     }
+  //   }
+  // };
+
+  // const { twitter: tweet, facebook: fb } = wes.links.social;
+
+  // const settings = { width: 300, color: 'black' }  // height, fontSize
+  // const { width = 100, height = 100, color = 'blue', fontSize = 25} = settings;
 
 </script>
 </body>
