@@ -6,16 +6,52 @@
 </head>
 <body>
 <script>
-  const details = ['Wes Bos', 123, 'wesbos.com'];
-  const [name, id, website] = details;
-  console.log(name, id, website);
+  const details = ['Clint Fisher', 123, 'clintfisher.me'];
 
-  const data = 'Basketball,Sports,90210,23,wes,bos,cool';
-  const [itemName, category, sku, inventory] = data.split(',');
+  // we could but we dont want to do this:
+  // const name = details[0];
+  // const id = details[1];
 
-  const team = ['Wes', 'Harry', 'Sarah', 'Keegan', 'Riker'];
+  /*  
+    we want to destructure instead!
+    when you destructure from an object
+    you use curly brace syntax `{}`, when
+    you destructure from an array you use
+    brackets `[]`.  
+  */
+  const [ name, id, site ] = details;
+  console.log(`name: ${name + '\n'} id: ${id + '\n'} site: ${site}`);
 
-  const [captain, assistant, ...players] = team;
+  // const [name, id, website] = details;
+  // console.log(name, id, website);
+
+const data = 'Baseball,Sports,90210,23,clint,fisher,rad';
+// data.split will return an array for us from data
+// and we'll immediately destructure it into four variables
+// notice: we only made 4 vars, and there are 7 items in our
+// string. we are only destructuring the first 4 and we are
+// ignoring the last 3 and thats exactly what the js engine does too
+const [ itemName, category, sku, inventory] = data.split(',');
+console.log(`
+  itemName: ${itemName + '\n'} 
+  category: ${category + '\n'} 
+  sku: ${sku + '\n'}
+  inventory: ${inventory}
+  `);
+
+// sometimes you do want to get the _rest_ of the items and we
+// can by using the rest operator, which lol gives u the rest of them
+
+const team = ['Doc', 'Honeycutt', 'JT', 'Kiké', 'Walker', 'Manny', 'CT3'];
+
+const [ manager, coach, ...players ] = team;
+
+  // const data = 'Basketball,Sports,90210,23,wes,bos,cool';
+  // const [itemName, category, sku, inventory] = data.split(',');
+
+  // const team = ['Wes', 'Harry', 'Sarah', 'Keegan', 'Riker'];
+
+  // const [captain, assistant, ...players] = team;
 
 </script>
 </body>
