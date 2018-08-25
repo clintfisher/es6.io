@@ -7,11 +7,43 @@
 <body>
 <script>
   let inRing = 'Hulk Hogan';
-  let onSide = 'The Rock';
+  let onSide = 'Macho Man Randy Savage';
+  console.log('inRing: ', inRing);
+  console.log('onSide: ', onSide);
 
-  console.log(inRing, onSide);
+  // old school way
+  // i used tag instad of tmp because 
+  // thats how the actual switch is made
+  // in wrestling.
+
+  // console.log('tag = inRing');
+  // var tag = inRing;
+  // console.log('tag: ', tag);
+  // console.log('inRing = onSide');
+  // inRing = onSide;
+  // console.log('inRing: ', inRing);
+  // console.log('onSide = tag');
+  // onSide = tag;
+  // console.log('onSide: ', onSide);
+
+  // new school way:
+  // with destructuring we can just swap them
+  /* 
+    its going to immediately create an array
+    of onSide and inRing and immediately 
+    destructure them into the opposite variables
+    which is why we are using `let` here because
+    we are re-assigning the values of variables.
+    with this solution there is no need for a
+    third tmp variable we just swap values
+  */
   [inRing, onSide] = [onSide, inRing];
-  console.log(inRing, onSide);
+  console.log('inRing: ', inRing);
+  console.log('onSide: ', onSide);
+
+  // console.log(inRing, onSide);
+  // [inRing, onSide] = [onSide, inRing];
+  // console.log(inRing, onSide);
 
 </script>
 </body>
