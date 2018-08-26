@@ -16,7 +16,63 @@
   <p>Hi I'm p 09</p>
   <p>Hi I'm p 10</p>
 <script>
-  const cuts = ['Chuck', 'Brisket', 'Shank', 'Short Rib'];
+  const cuts = ['It Takes A Nation Of Millions', 'Daily Operation', 'The Chronic', 'Strictly Business'];
+
+  // lets loop over cuts with a traditional for loop:
+  /* some of the downsides here are: 
+    * its a lot visually going on with the arguments to for
+    * its generally not very readable, you dont have a variable
+      called `cut` from `cuts`, you have to use cuts[i]  
+  */
+  // for (let i = 0; i < cuts.length; i++) {
+  //   console.log('cuts[i]:', cuts[i]);
+  // }
+
+  // we can also use the forEach array method:
+  // downwide of this approach is we cant abort the loop
+  // and we cannot skip one of the items by using `break`
+  // because the `break` statement is not allowed in the
+  // forEach method, same goes for `continue`
+  // cuts.forEach(cut => console.log('forEach cut: ', cut));
+
+  /* 
+    now we also have the for-in loop:
+    one of the big downsides to this is if you are working
+    with prototypes by adding methods, they will be included
+    in the items the for in loops over which you may not want
+    or be expecting (my summary of wes' example in the video)
+  */
+
+  // for (const cut in cuts) {
+  //   console.log('cut: ', cuts[cut]);
+  // }
+
+  // now we come to our for of loop, which gives us all the 
+  // best of the three loop worlds:
+  // caveat: you cant use for of on objects
+  // be sure to use const on `cut` or it will leak into the 
+  // global scope
+
+  for (const cut of cuts) {
+    // console.log('cut of cuts: ', cut);
+    // we can exit out with for-of:
+    // if (cut === 'Daily Operation') {
+    //   // console.log('Gang Starr');
+    //   break;
+    // }
+
+    // we can also skip over an item[s]
+    // this will cause this item to be continued over
+    // and it wont show up as an item in the log following it
+    if (cut === 'It Takes A Nation Of Millions') {
+      // console.log('PE');
+      continue;
+    }
+    console.log('cut: ', cut);
+  }
+
+  
+
 
   // for (const [i, cut] of cuts.entries()) {
   //   console.log(`${cut} is the ${i + 1} item`);
