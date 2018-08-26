@@ -16,12 +16,46 @@
     return converted;
   }
 
-  function tipCalc({ total = 100, tip = 0.15, tax = 0.13 } = {}) {
+  // const hundo = convertCurrency(100);
+  // console.log('hundo: ', hundo);
+  // console.log('hundo AUD: ', hundo.AUD);
+  // console.log('hundo USD: ', hundo.USD);
+
+  // with destructuring, you can _sort_ of return
+  // multiple values from functions, sort of in that you can
+  // return an object and destructure an answer from that
+  // lets destructure the object immediately as it comes back:
+  // note that the new destructured variables can be in any order
+  // and you can pick and choose what you want, you dont have to 
+  // destructure them all
+
+  const { MEX, USD } = convertCurrency(100);
+  console.log('MEX: ', MEX);
+  console.log('USD: ', USD);
+
+  // now we can wrap our parameters with curly braces
+  // which will destructure total, tip and tax into
+  // their own variables which will be available inside
+  // this function. we will then need to pass an object
+  // to tipCalc so that it destructures
+  // and we make that equal to an empty object for the case
+  // when say we have default values for each argument, and someone
+  // then calls our function with no args tipCalc(); they are then
+  // not passing in an object so we will get a destructuring error:
+  // TypeError (destructured parameter) is undefined.
+  function tipCalc({total = 100, tip = 0.15, tax = 0.13} = {}) {
     return total + (tip * total) + (tax * total);
   }
 
-  const bill = tipCalc({ tip: 0.20, total: 200 });
-  console.log(bill);
+  const bill = tipCalc();
+
+  console.log(`the bill isa thisa mucha: ${bill}`);
+  // function tipCalc({ total = 100, tip = 0.15, tax = 0.13 } = {}) {
+  //   return total + (tip * total) + (tax * total);
+  // }
+
+  // const bill = tipCalc({ tip: 0.20, total: 200 });
+  // console.log(bill);
 
 </script>
 </body>
