@@ -6,15 +6,6 @@
 </head>
 <body>
   <p>Hi I'm p 01</p>
-  <p>Hi I'm p 02</p>
-  <p>Hi I'm p 03</p>
-  <p>Hi I'm p 04</p>
-  <p>Hi I'm p 05</p>
-  <p>Hi I'm p 06</p>
-  <p>Hi I'm p 07</p>
-  <p>Hi I'm p 08</p>
-  <p>Hi I'm p 09</p>
-  <p>Hi I'm p 10</p>
 <script>
   const cuts = ['It Takes A Nation Of Millions', 'Daily Operation', 'The Chronic', 'Strictly Business'];
 
@@ -53,30 +44,71 @@
   // be sure to use const on `cut` or it will leak into the 
   // global scope
 
-  for (const cut of cuts) {
-    // console.log('cut of cuts: ', cut);
-    // we can exit out with for-of:
-    // if (cut === 'Daily Operation') {
-    //   // console.log('Gang Starr');
-    //   break;
-    // }
+  // for (const cut of cuts) {
+  //   // console.log('cut of cuts: ', cut);
+  //   // we can exit out with for-of:
+  //   // if (cut === 'Daily Operation') {
+  //   //   // console.log('Gang Starr');
+  //   //   break;
+  //   // }
 
-    // we can also skip over an item[s]
-    // this will cause this item to be continued over
-    // and it wont show up as an item in the log following it
-    if (cut === 'It Takes A Nation Of Millions') {
-      // console.log('PE');
-      continue;
-    }
-    console.log('cut: ', cut);
-  }
+  //   // we can also skip over an item[s]
+  //   // this will cause this item to be continued over
+  //   // and it wont show up as an item in the log following it
+  //   if (cut === 'It Takes A Nation Of Millions') {
+  //     // console.log('PE');
+  //     continue;
+  //   }
+  //   console.log('cut: ', cut);
+  // }
 
+  // generators
+  // if we attach an array (cuts) to the entries
+  // method, it will give us an arrayIterator()
+  // which has a next method, so lets store that in a variable
+  // and use it - each time you call the arrayIterator via the 
+  // next method it will return the index and value of the next item
   
+  // const tracks = cuts.entries();
+  // tracks.next();
+  // tracks.next();
+  // tracks.next();
 
+  // now if we iterate over the cuts array with the arrayIterator,
+  // we can then immediately destructure the index and valueitems 
+  // into their own variables
+
+  // for of is the loop of choice in every situation with the 
+  // exception of objects.
 
   // for (const [i, cut] of cuts.entries()) {
   //   console.log(`${cut} is the ${i + 1} item`);
   // }
+
+  // for (const [i, cut] of cuts.entries()) {
+  //   console.log(`${cut} is the ${i + 1} item`);
+  // }
+
+  /*
+    for-of is also useful when you need to iterate over
+    the arguments object. lets say we have an addUpNumbers
+    function and we have no idea how many numbers are going
+    to be passed in to that function. so we can access those
+    arguments via the arguments keyword with returns an array like
+    object that we can loop over with our for-of loop
+    
+  */
+
+  function addUpNumbers() {
+    let total = 0;
+    for (num of arguments) {
+      total += num;
+    }
+    console.log('total: ', total);
+    return total;
+  }
+
+  const thing = addUpNumbers(2, 5, 34, 567, 98);
 
   // function addUpNumbers() {
   //   let total = 0;
