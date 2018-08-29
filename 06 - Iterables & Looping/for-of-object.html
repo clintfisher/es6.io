@@ -7,17 +7,40 @@
 <body>
 
 <script>
+  /* 
+    a plain object {} is not an iterable
+
+  */
   const apple = {
     color: 'Red',
     size: 'Medium',
     weight: 50,
     sugar: 10
   };
+  // we will soon be able to use .entries method
+  // on an object just like we can now on an array
+  // there is a polyfil for object.entries that you can use
+  // in the meantime
+  // for (const prop of apple.entries()) {
+  //   console.log('prop: ', prop);
+  // }
 
-  for (const prop in apple) {
-    const value = apple[prop];
-    console.log(value, prop);
+  // what can we do now if you cant use the polyfil?
+  // we can use Object.keys which takes in an object
+  // and returns to us an array of all the keys
+  // for (const prop of Object.keys(apple)) {
+  //   const value = apple[prop];
+  //   console.log('prop: ', prop);
+  //   console.log('value: ', value);
+  // }
+  // at the time of wes' video Object.values wasnt
+  // available, it is now so you can do it easier with that:
+  for (const prop of Object.values(apple)) {
+    // const value = apple[prop];
+    console.log('prop: ', prop);
+    // console.log('value: ', value);
   }
+
 
 </script>
 </body>
